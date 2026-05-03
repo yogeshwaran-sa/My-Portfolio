@@ -189,15 +189,15 @@ document.addEventListener('DOMContentLoaded', function() {
     contactForm.addEventListener('submit', async function(e) {
       e.preventDefault();
       
-      const nameInput = this.querySelector('input[placeholder="Your Name"]');
-      const emailInput = this.querySelector('input[placeholder="Email"]');
-      const messageInput = this.querySelector('textarea[placeholder="Message"]');
+      const nameInput = this.querySelector('input[name="name"]');
+      const emailInput = this.querySelector('input[name="email"]');
+      const messageInput = this.querySelector('textarea[name="message"]');
       const submitBtn = this.querySelector('button[type="submit"]');
       const originalText = submitBtn.textContent;
       
       // Validation
       if (!nameInput.value.trim() || !emailInput.value.trim() || !messageInput.value.trim()) {
-        alert('Please fill in all fields!');
+        showNotification('Please fill in all fields!', 'error');
         return;
       }
 
@@ -208,26 +208,30 @@ document.addEventListener('DOMContentLoaded', function() {
       submitBtn.style.transition = 'all 0.3s ease';
 
       try {
-        // Using Formspree - free service for contact forms
-        const formData = new FormData(this);
-        const response = await fetch('https://formspree.io/f/myzzjoqj', {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
-        });
-
-        if (response.ok) {
+        // Check if running locally (file://)
+        const isLocal = window.location.protocol === 'file:';
+        
+        if (isLocal) {
+          // Demo mode for local testing
+          await new Promise(r => setTimeout(r, 1500)); // Simulate network delay
+          
           // Success animation
           submitBtn.style.backgroundColor = '#28a745';
           submitBtn.textContent = '✓ Message Sent!';
+          
+          // Log message to console for local testing
+          console.log('📧 Contact Form Message (Local Demo):', {
+            name: nameInput.value,
+            email: emailInput.value,
+            message: messageInput.value,
+            timestamp: new Date().toLocaleString()
+          });
           
           // Reset form
           this.reset();
           
           // Show success message
-          showNotification('Thanks! Your message has been sent. I\'ll get back to you soon!', 'success');
+          showNotification('✓ Demo Mode: Message preview shown in console. When deployed, this will send to yogeshsakthivel0109@gmail.com', 'success');
           
           // Reset button after 3 seconds
           setTimeout(() => {
@@ -237,17 +241,19 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.style.opacity = '1';
           }, 3000);
         } else {
-          showNotification('Oops! There was an error. Please try again.', 'error');
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalText;
-          submitBtn.style.opacity = '1';
+          // Real form submission for deployed version
+          // This will be handled by FormSubmit.co automatically
+          this.submit();
         }
       } catch (error) {
         console.error('Error:', error);
-        showNotification('Network error. Please check your connection.', 'error');
+        showNotification('Oops! Something went wrong. Please try again.', 'error');
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
         submitBtn.style.opacity = '1';
+      }
+    });
+  }
       }
     });
   }
