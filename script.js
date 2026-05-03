@@ -2,10 +2,9 @@
 // Typewriter Effect (Fixed)
 // =============================
 const roles = [
-  "Full-Stack Developer",
-  "Embedded Systems Specialist",
+  "Embedded Engineer",
   "IoT & PCB Designer",
-  "UI/UX Developer",
+  "Frontend Developer",
   "Aerospace Tech Innovator",
 ];
 
@@ -47,55 +46,235 @@ type();
 // Enhanced Slide Animations
 // =============================
 document.addEventListener('DOMContentLoaded', function() {
-  // Project cards animation
+  // Project cards animation - Enhanced
   const projectCards = document.querySelectorAll('.theme-card');
   projectCards.forEach(card => {
     card.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-15px) rotate(2deg)';
-      this.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-      this.style.boxShadow = '0 20px 30px rgba(0, 0, 0, 0.2)';
+      this.style.transform = 'translateY(-20px) scale(1.05)';
+      this.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      this.style.boxShadow = '0 30px 50px rgba(128, 0, 0, 0.3)';
     });
 
     card.addEventListener('mouseleave', function() {
-      this.style.transform = 'translateY(0) rotate(0)';
+      this.style.transform = 'translateY(0) scale(1)';
       this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
     });
   });
 
-  // Certification list items animation
-  const certItems = document.querySelectorAll('.cert-list li');
-  certItems.forEach(item => {
-    item.addEventListener('mouseenter', function() {
-      this.style.transform = 'scale(1.05)';
-      this.style.paddingLeft = '1.5rem';
-      this.style.transition = 'all 0.3s ease';
-      this.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+  // Skill icons animation - Rotate and scale
+  const skillElements = document.querySelectorAll('.skill');
+  skillElements.forEach(skill => {
+    skill.addEventListener('mouseenter', function() {
+      const icon = this.querySelector('i');
+      if (icon) {
+        icon.style.transform = 'rotate(360deg) scale(1.3)';
+        icon.style.transition = 'all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+      }
+      this.style.transform = 'translateY(-12px) scale(1.08)';
+      this.style.boxShadow = '0 20px 40px rgba(128, 0, 0, 0.4)';
+      this.style.transition = 'all 0.4s ease';
     });
 
-    item.addEventListener('mouseleave', function() {
-      this.style.transform = 'scale(1)';
-      this.style.paddingLeft = '0.5rem';
-      this.style.backgroundColor = 'transparent';
+    skill.addEventListener('mouseleave', function() {
+      const icon = this.querySelector('i');
+      if (icon) {
+        icon.style.transform = 'rotate(0deg) scale(1)';
+      }
+      this.style.transform = 'translateY(0) scale(1)';
     });
   });
 
-  // Project carousel enhanced transitions
-  const carousel = document.getElementById('projectsCarousel');
-  if (carousel) {
-    carousel.addEventListener('slide.bs.carousel', function(e) {
-      const activeItem = this.querySelector('.carousel-item.active');
-      const nextItem = this.querySelectorAll('.carousel-item')[e.to];
-      
-      // Add sliding animations
-      activeItem.style.transform = e.direction === 'left' ? 
-        'translateX(-100%) rotate(-5deg)' : 'translateX(100%) rotate(5deg)';
-      activeItem.style.opacity = '0';
-      activeItem.style.transition = 'all 0.5s ease-out';
-      
-      nextItem.style.transform = 'translateX(0) rotate(0)';
-      nextItem.style.opacity = '1';
-      nextItem.style.transition = 'all 0.5s ease-out';
+  // Certification list items animation - Staggered fade-in
+  const certItems = document.querySelectorAll('.cert-list li');
+  certItems.forEach((item, index) => {
+    item.style.animation = `fadeInLeft 0.6s ease-out ${index * 0.1}s both`;
+    
+    item.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateX(15px) scale(1.05)';
+      this.style.transition = 'all 0.3s ease';
+      this.style.paddingLeft = '1.5rem';
+      this.style.backgroundColor = 'rgba(128, 0, 0, 0.08)';
+      this.style.borderRadius = '8px';
+      this.style.borderLeft = '4px solid #800000';
     });
+
+    item.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateX(0) scale(1)';
+      this.style.paddingLeft = '0.5rem';
+      this.style.backgroundColor = 'transparent';
+      this.style.borderLeft = 'none';
+    });
+  });
+
+  // Button hover animations - Smooth lift
+  const buttons = document.querySelectorAll('.btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-4px)';
+      this.style.boxShadow = '0 15px 35px rgba(128, 0, 0, 0.35)';
+      this.style.transition = 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+    });
+
+    btn.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+      this.style.boxShadow = 'none';
+    });
+  });
+
+  // Card hover lift effect
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-15px)';
+      this.style.boxShadow = '0 25px 50px rgba(128, 0, 0, 0.28)';
+      this.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+    });
+
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+      this.style.boxShadow = 'none';
+    });
+  });
+
+  // Contact form input animations
+  const formInputs = document.querySelectorAll('.contact-form .form-control');
+  formInputs.forEach(input => {
+    input.addEventListener('focus', function() {
+      this.parentElement.style.transform = 'scale(1.02)';
+      this.parentElement.style.transition = 'all 0.3s ease';
+      this.style.borderColor = '#800000';
+    });
+
+    input.addEventListener('blur', function() {
+      this.parentElement.style.transform = 'scale(1)';
+      this.style.borderColor = '#842727';
+    });
+  });
+
+  // Project blob animation on hover
+  const projectBlobs = document.querySelectorAll('.project-blob');
+  projectBlobs.forEach(blob => {
+    blob.addEventListener('mouseenter', function() {
+      const blobShape = this.querySelector('.blob-shape');
+      if (blobShape) {
+        blobShape.style.transform = 'scale(1.2) rotate(45deg)';
+        blobShape.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        blobShape.style.boxShadow = '0 15px 40px rgba(128, 0, 0, 0.3)';
+      }
+    });
+
+    blob.addEventListener('mouseleave', function() {
+      const blobShape = this.querySelector('.blob-shape');
+      if (blobShape) {
+        blobShape.style.transform = 'scale(1) rotate(0deg)';
+        blobShape.style.boxShadow = 'none';
+      }
+    });
+  });
+
+  // Parallax effect on scroll
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const parallaxElements = document.querySelectorAll('.hero-profile-circle');
+    
+    parallaxElements.forEach(element => {
+      element.style.transform = `translateY(${scrolled * 0.15}px)`;
+      element.style.transition = 'transform 0.1s ease-out';
+    });
+  });
+
+  // Contact form submission with working backend
+  const contactForm = document.querySelector('.contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const nameInput = this.querySelector('input[placeholder="Your Name"]');
+      const emailInput = this.querySelector('input[placeholder="Email"]');
+      const messageInput = this.querySelector('textarea[placeholder="Message"]');
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      
+      // Validation
+      if (!nameInput.value.trim() || !emailInput.value.trim() || !messageInput.value.trim()) {
+        alert('Please fill in all fields!');
+        return;
+      }
+
+      // Show loading state
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.style.opacity = '0.7';
+      submitBtn.style.transition = 'all 0.3s ease';
+
+      try {
+        // Using Formspree - free service for contact forms
+        const formData = new FormData(this);
+        const response = await fetch('https://formspree.io/f/myzzjoqj', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          // Success animation
+          submitBtn.style.backgroundColor = '#28a745';
+          submitBtn.textContent = '✓ Message Sent!';
+          
+          // Reset form
+          this.reset();
+          
+          // Show success message
+          showNotification('Thanks! Your message has been sent. I\'ll get back to you soon!', 'success');
+          
+          // Reset button after 3 seconds
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.style.backgroundColor = '';
+            submitBtn.textContent = originalText;
+            submitBtn.style.opacity = '1';
+          }, 3000);
+        } else {
+          showNotification('Oops! There was an error. Please try again.', 'error');
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+          submitBtn.style.opacity = '1';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showNotification('Network error. Please check your connection.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+        submitBtn.style.opacity = '1';
+      }
+    });
+  }
+
+  // Notification system
+  function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      background: ${type === 'success' ? '#28a745' : '#dc3545'};
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      z-index: 9999;
+      animation: slideInRight 0.5s ease-out;
+      font-weight: 500;
+    `;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+      notification.style.animation = 'slideOutRight 0.5s ease-out';
+      setTimeout(() => notification.remove(), 500);
+    }, 4000);
   }
 });
 
