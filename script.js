@@ -2,8 +2,11 @@
 // Typewriter Effect (Fixed)
 // =============================
 const roles = [
-  "FrontEnd Developer",
-  "Electronic Engineer "," Freelancer",
+  "Full-Stack Developer",
+  "Embedded Systems Specialist",
+  "IoT & PCB Designer",
+  "UI/UX Developer",
+  "Aerospace Tech Innovator",
 ];
 
 const el = document.getElementById("typer");
