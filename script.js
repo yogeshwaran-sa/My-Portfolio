@@ -254,9 +254,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-      }
-    });
-  }
 
   // Notification system
   function showNotification(message, type = 'info') {
